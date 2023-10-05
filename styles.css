@@ -1,0 +1,56 @@
+html {
+  font-family:
+    system,
+    -apple-system,
+    ".SFNSText-Regular",
+    "San Francisco",
+    "Roboto",
+    "Segoe UI",
+    "Helvetica Neue",
+    "Lucida Grande",
+    sans-serif;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #120458;
+}
+
+main h1 {
+  text-align: center;
+}
+
+main form {
+  display: flex;
+  flex-direction: column;
+}
+
+main form input {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  transition: transform 0.1s ease-in-out;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.sc-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

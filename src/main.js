@@ -1,5 +1,9 @@
 import weather from "./weather-data.js";
-import { displayWeather, displayWeatherError } from "./weather-display.js";
+import {
+  displayWeather,
+  displayWeatherError,
+  changeTempUnit,
+} from "./weather-display.js";
 
 const weatherForm = document.querySelector("#weather-form");
 
@@ -10,11 +14,15 @@ const handleWeatherFormSubmit = (e) => {
     .getDataObject()
     .then((data) => {
       // add an option for fahrenheit and celsius selection
-      displayWeather(data, "celsius");
+      displayWeather(data);
     })
     .catch(() => {
       displayWeatherError();
     });
+};
+
+const handleChangingTempUnit = () => {
+  changeTempUnit();
 };
 
 weatherForm.addEventListener("submit", handleWeatherFormSubmit);

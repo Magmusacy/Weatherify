@@ -16,26 +16,46 @@ html {
   box-sizing: border-box;
 }
 
-body {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background-color: #120458;
+:root {
+  --transparent-bg: rgba(0, 0, 0, 0.5);
 }
 
-main h1 {
+body {
+  min-height: 100vh;
+  background-color: #120458;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+}
+
+main {
+  display: grid;
+  grid-template-rows: 0.5fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.search-form {
+  justify-self: center;
+  background-color: var(--transparent-bg);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.search-form h1 {
   text-align: center;
 }
 
-main form {
+.search-form form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-main form input {
+.search-form form input {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #ccc;
+  width: 250px;
   border-radius: 0.25rem;
   font-size: 1rem;
   transition: transform 0.1s ease-in-out;
@@ -53,4 +73,21 @@ input[type="submit"]:hover {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.weather-results div {
+  transition: opacity 0.5s ease-in-out;
+  font-size: 30px;
+}
+
+.forecast {
+  border: 1px solid green;
 }

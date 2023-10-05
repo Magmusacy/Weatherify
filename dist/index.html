@@ -4,9 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weatherify</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="styles.css" />
     <script src="main.js" defer></script>
   </head>
+
   <body>
-    Hello World!
+    <main>
+      <h1>Weatherify</h1>
+
+      <form action="#" id="weather-form">
+        <label for="location" class="sc-only">Location:</label>
+        <input id="location" type="text" placeholder="Location" />
+        <input type="submit" value="Get Weather" />
+      </form>
+
+      <div id="weather-results" class="weather-results">
+        <div id="weather-results-location"></div>
+        <div id="weather-results-temperature"></div>
+      </div>
+    </main>
   </body>
 </html>

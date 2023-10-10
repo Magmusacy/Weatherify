@@ -1,7 +1,7 @@
 export default function weather(location) {
   const getWeatherData = async () => {
     const key = "26bdff49ae6e46cfb0463609230310";
-    const url = `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${location}&days=3`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${location}&days=3`;
     const response = await fetch(url, { mode: "cors" });
     return await response.json();
   };

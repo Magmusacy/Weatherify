@@ -1,15 +1,3 @@
-# 🚀 Welcome to your new awesome project!
+# A simple weather forecast app made with Javascript, HTML and CSS
 
-This project has been created using **webpack-cli**, you can now run
-
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+It uses https://www.weatherapi.com/ to get the weather data for the next 3 days and https://developers.giphy.com/ to get a gif related to the weather.

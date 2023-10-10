@@ -1,10 +1,15 @@
 let tempUnit = "celsius";
 
 export const displayWeather = (data) => {
-  displayWeatherInfo(data);
-  // Always use celsius to change background
-  animateResults();
-  changeBackground(data.temp_c);
+  // Remove any pre-existing weather cards
+  clearWeatherCards();
+  displayWeatherCards(data);
+  displayFormInfo(data);
+};
+
+export const displayFormInfo = (data) => {
+  const locationField = document.querySelector("#location-name");
+  locationField.textContent = `Location: ${data[0].location}`;
 };
 
 export const displayWeatherError = () => {};
@@ -14,16 +19,62 @@ export const changeTempUnit = () => {
   else tempUnit = "celsius";
 };
 
-const displayWeatherInfo = (data) => {
-  weatherLocation.textContent = data.location;
-  if (tempUnit === "celsius") {
-    weatherTemperature.textContent = `${data.temp_c}°C`;
-  } else {
-    weatherTemperature.textContent = `${data.temp_f}°F`;
-  }
+const clearWeatherCards = () => {
+  const weatherCards = document.querySelectorAll(".forecast");
+  weatherCards.forEach((card) => card.remove());
 };
 
-const changeBackground = async (temp_c) => {
+const displayWeatherCards = (data) => {
+  data.forEach((day) => {
+    createForecastCard(day);
+  });
+};
+
+const createForecastCard = (data) => {
+  const mainElement = document.querySelector("main");
+  const tempUnitShort = tempUnit === "celsius" ? "c" : "f";
+  mainElement.insertAdjacentHTML(
+    "beforeend",
+    `      
+    <div class="forecast">
+      <div class="summary">
+        <div id="date-info" class="date-info">${data.date}</div>
+        <div class="temperatures">
+          Temperatures:
+          <div class="min-temp">Min: ${data["mintemp_" + tempUnitShort]} ${
+            tempUnitShort == "c" ? "°C" : "°F"
+          }</div>
+          <div class="max-temp">Max: ${data["maxtemp_" + tempUnitShort]} ${
+            tempUnitShort == "c" ? "°C" : "°F"
+          }</div>
+          <div class="avg-temp">Avg: ${data["avgtemp_" + tempUnitShort]} ${
+            tempUnitShort == "c" ? "°C" : "°F"
+          }</div>
+        </div>
+      </div>
+      <div id="hours-region-${data.date}" class="hours">
+      </div>
+    </div>
+  `
+  );
+
+  const hoursRegion = document.querySelector(`#hours-region-${data.date}`);
+  data.hours.forEach((hour) => {
+    hoursRegion.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="hour-card">
+        <div class="hour">Hour: ${hour.time.split(" ").at(-1)}</div>
+        <div class="temperature">Temp: ${hour["temp_" + tempUnitShort]} ${
+          tempUnitShort == "c" ? "°C" : "°F"
+        }</div>
+      </div>
+    `
+    );
+  });
+};
+
+export const changeBackground = async (temp_c) => {
   console.log(temp_c);
   const weatherState = getWeatherState(temp_c);
   const giphyKey = "pPGSOO8l3rw2kVYw4X9cMkoWOqPFXVA8";
@@ -38,22 +89,4 @@ const getWeatherState = (temp_c) => {
   else if (temp_c > 15) return "warm+temperature+outside";
   else if (temp_c > -5) return "cold+temperature+outside";
   else return "freezing+temperature+outside";
-};
-
-const animateResults = async () => {
-  const timeoutTime = 300;
-
-  new Promise((resolve) => {
-    setTimeout(() => {
-      weatherLocation.classList.remove("hidden");
-      weatherLocation.classList.add("visible");
-      resolve();
-    }, timeoutTime);
-  }).then(() => {
-    console.log("hejs");
-    setTimeout(() => {
-      weatherTemperature.classList.remove("hidden");
-      weatherTemperature.classList.add("visible");
-    }, timeoutTime);
-  });
 };

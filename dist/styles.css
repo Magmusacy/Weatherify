@@ -30,11 +30,14 @@ body {
 
 main {
   display: grid;
-  grid-template-rows: 250px 1fr 1fr 1fr;
+  grid-template-rows: 300px 1fr 1fr 1fr;
   gap: 1rem;
 }
 
 .search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   justify-self: center;
   background-color: var(--transparent-bg);
   padding: 20px;
@@ -49,10 +52,10 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
 
 .search-form form input {
-  margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #ccc;
   width: 250px;
@@ -158,4 +161,15 @@ input[type="submit"]:hover {
   .hours {
     grid-template-columns: repeat(4, minmax(150px, 1fr));
   }
+}
+
+.unit-selection {
+  width: 100%;
+  padding: 0.5rem;
+  transition: transform 0.1s ease-in-out;
+}
+
+.unit-selection:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }

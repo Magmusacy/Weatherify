@@ -1,3 +1,4 @@
+const locationField = document.querySelector("#location-name");
 let tempUnit = "celsius";
 
 export const displayWeather = (data) => {
@@ -8,15 +9,27 @@ export const displayWeather = (data) => {
 };
 
 export const displayFormInfo = (data) => {
-  const locationField = document.querySelector("#location-name");
   locationField.textContent = `Location: ${data[0].location}`;
 };
 
-export const displayWeatherError = () => {};
+export const displayWeatherError = () => {
+  locationField.textContent = `ERROR: Location not found`;
+  clearWeatherCards();
+};
 
 export const changeTempUnit = () => {
   if (tempUnit === "celsius") tempUnit = "fahrenheit";
   else tempUnit = "celsius";
+};
+
+export const displayWeatherUnit = () => {
+  const unitSelection = document.querySelector("#unit-selection");
+  console.log(unitSelection);
+  if (tempUnit === "celsius") {
+    unitSelection.textContent = "Change to Fahrenheit";
+  } else {
+    unitSelection.textContent = "Change to Celsius";
+  }
 };
 
 const clearWeatherCards = () => {
